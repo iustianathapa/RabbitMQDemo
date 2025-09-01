@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "yT2r8zgBn+HNncKhvQYygscY+oSfm+tUyVJPIPMsPtK78sYX/evxBxPZqtvLp/Y96r5c/Ri4V/Z7tYLQmtjG/A==",
+  "success": true,
+  "projectFilePath": "/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Publisher/RabbitMQDemo.Publisher.csproj",
+  "expectedPackageFiles": [
+    "/Users/iustianathapa/.nuget/packages/microsoft.bcl.asyncinterfaces/8.0.0/microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/rabbitmq.client/7.1.2/rabbitmq.client.7.1.2.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/system.diagnostics.diagnosticsource/8.0.1/system.diagnostics.diagnosticsource.8.0.1.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/system.memory/4.5.5/system.memory.4.5.5.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/system.threading.channels/8.0.0/system.threading.channels.8.0.0.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/system.threading.ratelimiting/8.0.0/system.threading.ratelimiting.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

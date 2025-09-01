@@ -1,0 +1,12 @@
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/bin/Debug/net6.0/RabbitMQDemo.Contracts.deps.json
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/bin/Debug/net6.0/RabbitMQDemo.Contracts.dll
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/bin/Debug/net6.0/RabbitMQDemo.Contracts.pdb
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/obj/Debug/net6.0/RabbitMQDemo.Contracts.csproj.AssemblyReference.cache
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/obj/Debug/net6.0/RabbitMQDemo.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/obj/Debug/net6.0/RabbitMQDemo.Contracts.AssemblyInfoInputs.cache
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/obj/Debug/net6.0/RabbitMQDemo.Contracts.AssemblyInfo.cs
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/obj/Debug/net6.0/RabbitMQDemo.Contracts.csproj.CoreCompileInputs.cache
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/obj/Debug/net6.0/RabbitMQDemo.Contracts.dll
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/obj/Debug/net6.0/refint/RabbitMQDemo.Contracts.dll
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/obj/Debug/net6.0/RabbitMQDemo.Contracts.pdb
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/obj/Debug/net6.0/ref/RabbitMQDemo.Contracts.dll
