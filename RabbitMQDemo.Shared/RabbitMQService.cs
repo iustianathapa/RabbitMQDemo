@@ -14,6 +14,9 @@ namespace RabbitMQDemo.Shared
 
         public RabbitMQService(string host = "localhost")
         {
+            if (string.IsNullOrEmpty(host))
+                throw new Exception("RabbitMQ host is required!");
+
             var factory = new ConnectionFactory()
             {
                 HostName = host,
@@ -26,13 +29,13 @@ namespace RabbitMQDemo.Shared
 
         public void QueueDeclareAndBind(string queueName)
         {
+            _channel.ExchangeDeclare("direct_exchange", ExchangeType.Direct, durable: true);
             _channel.QueueDeclare(queueName, durable: true, exclusive: false, autoDelete: false);
             _channel.QueueBind(queueName, "direct_exchange", queueName);
         }
 
         public void Publish(string routingKey, object message)
         {
-            _channel.ExchangeDeclare("direct_exchange", ExchangeType.Direct, durable: true);
             var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(message));
             _channel.BasicPublish("direct_exchange", routingKey, null, body);
         }

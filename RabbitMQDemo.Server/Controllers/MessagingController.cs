@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RabbitMQDemo.Shared;
 using RabbitMQDemo.Contracts;
+using System.Threading;
 
 namespace RabbitMQDemo.Server.Controllers
 {
@@ -9,31 +10,42 @@ namespace RabbitMQDemo.Server.Controllers
     public class MessagingController : ControllerBase
     {
         private readonly RabbitMQService _rabbit;
-        private readonly IConfiguration _config;
+        private static int _clientCounter = 0; // in-memory counter for auto IDs
+        private static object _lock = new object();
 
-        public MessagingController(RabbitMQService rabbit, IConfiguration config)
+        public MessagingController(RabbitMQService rabbit)
         {
             _rabbit = rabbit;
-            _config = config;
         }
 
         [HttpPost("Send")]
         public IActionResult SendMessage([FromBody] ClientRequest request)
         {
-            if (string.IsNullOrEmpty(request.ClientId))
+            string clientId;
+
+            if (!string.IsNullOrEmpty(request.ClientId))
             {
-                request.ClientId = _config["ClientId"];
+                // Use provided client ID
+                clientId = request.ClientId;
+            }
+            else
+            {
+                // Generate new client ID
+                lock (_lock)
+                {
+                    clientId = $"client{++_clientCounter}";
+                }
             }
 
-            string routingKey = $"client.{request.ClientId}";
+            string routingKey = clientId; // the queue name / routing key
 
             // Ensure queue exists
             _rabbit.QueueDeclareAndBind(routingKey);
 
-            // Publish
+            // Publish the message
             _rabbit.Publish(routingKey, request);
 
-            return Ok(new { Message = $"Message sent to {request.ClientId}" });
+            return Ok(new { AssignedClientId = clientId, Message = "Message sent" });
         }
     }
 }

@@ -7,11 +7,9 @@ var builder = Host.CreateDefaultBuilder(args)
     {
         var config = context.Configuration;
 
-        string clientId = config["ClientId"] ?? "client1";
-
-        // This line is critical — make sure Host is not null
+        string clientId = config["ClientId"] ?? "client1"; // client ID from appsettings.json
         string host = config["RabbitMQ:Host"];
-        if(string.IsNullOrEmpty(host))
+        if (string.IsNullOrEmpty(host))
             throw new Exception("RabbitMQ:Host not found in configuration!");
 
         services.AddSingleton(sp => new RabbitMQService(host));

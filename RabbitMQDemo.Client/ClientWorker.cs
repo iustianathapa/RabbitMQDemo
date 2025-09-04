@@ -1,10 +1,10 @@
 using Microsoft.Extensions.Hosting;
 using RabbitMQDemo.Shared;
 using RabbitMQDemo.Contracts;
+using System;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using System;
 
 namespace RabbitMQDemo.Client
 {
@@ -21,16 +21,12 @@ namespace RabbitMQDemo.Client
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _rabbit.Consume($"client.{_clientId}", async message =>
+            string queueName = $"client.{_clientId}";
+
+            _rabbit.Consume(queueName, async message =>
             {
                 var request = JsonSerializer.Deserialize<ClientRequest>(message);
-                Console.WriteLine($"[{_clientId}] Received method: {request.Method}");
-
-                if (request.Method == "Print" && request.Payload.ContainsKey("Message"))
-                {
-                    Console.WriteLine($"[{_clientId}] Message: {request.Payload["Message"]}");
-                }
-
+                Console.WriteLine($"[{_clientId}] Received: {request.Method} - {request.Payload["Message"]}");
                 await Task.CompletedTask;
             });
 
