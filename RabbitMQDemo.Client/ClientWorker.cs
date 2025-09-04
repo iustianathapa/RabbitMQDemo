@@ -32,5 +32,11 @@ namespace RabbitMQDemo.Client
 
             return Task.CompletedTask;
         }
+
+        public override void Dispose()
+        {
+            _rabbit.Dispose();
+            base.Dispose();
+        }
     }
 }
