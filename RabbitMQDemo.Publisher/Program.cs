@@ -2,10 +2,12 @@
 using RabbitMQDemo.Contracts;
 using System.Text.Json;
 
-// 1. Set RabbitMQ host
+// 1. Set RabbitMQ host and credentials
 string rabbitHost = "10.123.125.22"; // your server LAN IP or localhost if same PC
+string rabbitUser = "guest";         // set your RabbitMQ username
+string rabbitPass = "guest";         // set your RabbitMQ password
 
-using var rabbit = new RabbitMQService(rabbitHost);
+using var rabbit = new RabbitMQService(rabbitHost, rabbitUser, rabbitPass);
 
 Console.WriteLine("Publisher started.");
 
