@@ -6,7 +6,13 @@ using RabbitMQDemo.Shared;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
-builder.Services.AddSingleton(sp => new RabbitMQService(builder.Configuration["RabbitMQ:Host"]));
+builder.Services.AddSingleton(sp =>
+    new RabbitMQService(
+        builder.Configuration["RabbitMQ:Host"],
+        builder.Configuration["RabbitMQ:User"],
+        builder.Configuration["RabbitMQ:Password"]
+    )
+);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
