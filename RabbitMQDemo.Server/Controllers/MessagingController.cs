@@ -38,12 +38,13 @@ namespace RabbitMQDemo.Server.Controllers
             }
 
             string routingKey = clientId; // the queue name / routing key
+            string queueName = $"client.{request.ClientId}"; // clientId from config or command-line
 
             // Ensure queue exists
-            _rabbit.QueueDeclareAndBind(routingKey);
+            _rabbit.QueueDeclareAndBind(queueName);
 
             // Publish the message
-            _rabbit.Publish(routingKey, request);
+            _rabbit.Publish(queueName, request);
 
             return Ok(new { AssignedClientId = clientId, Message = "Message sent" });
         }

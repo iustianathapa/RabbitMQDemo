@@ -12,7 +12,10 @@ var builder = Host.CreateDefaultBuilder(args)
         if (string.IsNullOrEmpty(host))
             throw new Exception("RabbitMQ:Host not found in configuration!");
 
-        services.AddSingleton(sp => new RabbitMQService(host));
+        string user = config["RabbitMQ:User"];
+        string pass = config["RabbitMQ:Password"];
+
+        services.AddSingleton(sp => new RabbitMQService(host, user, pass));
         services.AddHostedService(sp => new ClientWorker(
             sp.GetRequiredService<RabbitMQService>(), clientId));
     })

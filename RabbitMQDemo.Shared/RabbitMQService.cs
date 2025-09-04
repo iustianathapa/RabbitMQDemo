@@ -12,7 +12,7 @@ namespace RabbitMQDemo.Shared
         private readonly IConnection _connection;
         private readonly IModel _channel;
 
-        public RabbitMQService(string host = "localhost")
+        public RabbitMQService(string host, string user, string password)
         {
             if (string.IsNullOrEmpty(host))
                 throw new Exception("RabbitMQ host is required!");
@@ -20,6 +20,8 @@ namespace RabbitMQDemo.Shared
             var factory = new ConnectionFactory()
             {
                 HostName = host,
+                UserName = user,
+                Password = password,
                 DispatchConsumersAsync = true
             };
 
