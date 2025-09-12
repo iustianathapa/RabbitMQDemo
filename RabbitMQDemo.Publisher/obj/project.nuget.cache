@@ -1,20 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "SVNL1r/BGtdv/nHVOUzku3l6Pe/k2tWOi1tXE1Yos6TUFv920UEXhRWXk9AfTJZLBE+IB1LCjdF0xRafaYaEDQ==",
+  "dgSpecHash": "mN/4HPlL7EQJuxjEnEs0eLcqqKl0QgLPQe1coyjxhpS1yO7kHlumVkkIGkpE/l3wttH/JVdZpnhREDtqusHhcA==",
   "success": true,
   "projectFilePath": "/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Publisher/RabbitMQDemo.Publisher.csproj",
   "expectedPackageFiles": [
-    "/Users/iustianathapa/.nuget/packages/microsoft.bcl.asyncinterfaces/8.0.0/microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/microsoft.extensions.configuration/6.0.2/microsoft.extensions.configuration.6.0.2.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/rabbitmq.client/7.1.2/rabbitmq.client.7.1.2.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/system.diagnostics.diagnosticsource/8.0.1/system.diagnostics.diagnosticsource.8.0.1.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/system.memory/4.5.5/system.memory.4.5.5.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/rabbitmq.client/6.4.0/rabbitmq.client.6.4.0.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/system.threading.channels/8.0.0/system.threading.channels.8.0.0.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/system.threading.ratelimiting/8.0.0/system.threading.ratelimiting.8.0.0.nupkg.sha512"
+    "/Users/iustianathapa/.nuget/packages/system.threading.channels/4.7.1/system.threading.channels.4.7.1.nupkg.sha512"
   ],
   "logs": []
 }

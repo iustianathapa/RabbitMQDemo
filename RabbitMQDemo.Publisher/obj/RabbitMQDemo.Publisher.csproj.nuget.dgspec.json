@@ -106,7 +106,7 @@
           "dependencies": {
             "RabbitMQ.Client": {
               "target": "Package",
-              "version": "[7.1.2, )"
+              "version": "[6.4.0, )"
             }
           },
           "imports": [
