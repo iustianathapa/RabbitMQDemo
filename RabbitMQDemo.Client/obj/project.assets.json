@@ -1498,6 +1498,8 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Microsoft.Extensions.Configuration >= 6.0.2",
+      "Microsoft.Extensions.Configuration.Json >= 6.0.0",
       "Microsoft.Extensions.Hosting >= 6.0.1",
       "RabbitMQ.Client >= 6.4.0",
       "RabbitMQDemo.Contracts >= 1.0.0",
@@ -1548,6 +1550,14 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Microsoft.Extensions.Configuration": {
+            "target": "Package",
+            "version": "[6.0.2, )"
+          },
+          "Microsoft.Extensions.Configuration.Json": {
+            "target": "Package",
+            "version": "[6.0.0, )"
+          },
           "Microsoft.Extensions.Hosting": {
             "target": "Package",
             "version": "[6.0.1, )"
