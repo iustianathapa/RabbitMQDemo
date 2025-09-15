@@ -1,24 +1,34 @@
-using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 using RabbitMQDemo.Shared;
-using RabbitMQDemo.Client;
+using System;
+using System.Threading.Tasks;
 
-var builder = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((context, services) =>
-    {
-        var config = context.Configuration;
-
-        string clientId = config["ClientId"] ?? "client1"; // client ID from appsettings.json
-        string host = config["RabbitMQ:Host"];
-        if (string.IsNullOrEmpty(host))
-            throw new Exception("RabbitMQ:Host not found in configuration!");
-
-        string user = config["RabbitMQ:User"];
-        string pass = config["RabbitMQ:Password"];
-
-        services.AddSingleton(sp => new RabbitMQService(host, user, pass));
-        services.AddHostedService(sp => new ClientWorker(
-            sp.GetRequiredService<RabbitMQService>(), clientId));
-    })
+// Build configuration
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
     .Build();
 
-await builder.RunAsync();
+// Get RabbitMQ settings
+var rabbitHost = configuration["RabbitMQ:Host"];
+var rabbitUser = configuration["RabbitMQ:User"];
+var rabbitPass = configuration["RabbitMQ:Password"];
+
+// Get client ID from user input
+Console.Write("Enter Client ID (same as publisher will use, e.g., client1): ");
+string clientId = Console.ReadLine()?.Trim() ?? "client1";
+
+using var rabbit = new RabbitMQService(rabbitHost, rabbitUser, rabbitPass);
+
+Console.WriteLine($"Client {clientId} started. Waiting for messages...");
+Console.WriteLine($"Publisher will send messages to queue: client.{clientId}");
+
+// Start consuming messages for this client
+rabbit.Consume($"client.{clientId}", async (message) =>
+{
+    Console.WriteLine($"Received: {message}");
+    await Task.CompletedTask;
+});
+
+Console.WriteLine("Press [enter] to exit.");
+Console.ReadLine();
