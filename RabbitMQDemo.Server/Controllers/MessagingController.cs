@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RabbitMQDemo.Shared;
 using RabbitMQDemo.Contracts;
-using System.Threading;
+using System.Collections.Generic;
 
 namespace RabbitMQDemo.Server.Controllers
 {
@@ -10,43 +10,56 @@ namespace RabbitMQDemo.Server.Controllers
     public class MessagingController : ControllerBase
     {
         private readonly RabbitMQService _rabbit;
-        private static int _clientCounter = 0; // in-memory counter for auto IDs
-        private static object _lock = new object();
 
         public MessagingController(RabbitMQService rabbit)
         {
             _rabbit = rabbit;
         }
 
-        [HttpPost("Send")]
-        public IActionResult SendMessage([FromBody] ClientRequest request)
+        /// <summary>
+        /// Send KOT or other commands to a specific client
+        /// </summary>
+        [HttpPost("SendKOT")]
+        public IActionResult SendKOT([FromBody] KOTRequest request)
         {
-            string clientId;
+            if (string.IsNullOrEmpty(request.ClientId))
+                return BadRequest("ClientId is required");
 
-            if (!string.IsNullOrEmpty(request.ClientId))
-            {
-                // Use provided client ID
-                clientId = request.ClientId;
-            }
-            else
-            {
-                // Generate new client ID
-                lock (_lock)
-                {
-                    clientId = $"client{++_clientCounter}";
-                }
-            }
+            string queueName = $"client.{request.ClientId}";
 
-            string routingKey = clientId; // the queue name / routing key
-            string queueName = $"client.{request.ClientId}"; // clientId from config or command-line
-
-            // Ensure queue exists
             _rabbit.QueueDeclareAndBind(queueName);
 
-            // Publish the message
-            _rabbit.Publish(queueName, request);
+            // Build payload as per ClientRequest
+            var payload = new Dictionary<string, string>
+            {
+                { "BillNo", request.BillNo },
+                { "TableNo", request.TableNo },
+                { "Waiter", request.Waiter },
+                { "Items", request.Items } // format: "Item1,2;Item2,1;Item3,4"
+            };
 
-            return Ok(new { AssignedClientId = clientId, Message = "Message sent" });
+            var clientRequest = new ClientRequest
+            {
+                ClientId = request.ClientId,
+                Method = "Print",
+                Payload = payload
+            };
+
+            _rabbit.Publish(queueName, clientRequest);
+
+            return Ok(new { Message = "KOT sent to client", Client = request.ClientId });
         }
+    }
+
+    /// <summary>
+    /// DTO for sending KOT from HMS
+    /// </summary>
+    public class KOTRequest
+    {
+        public string ClientId { get; set; } = "";
+        public string BillNo { get; set; } = "";
+        public string TableNo { get; set; } = "";
+        public string Waiter { get; set; } = "";
+        public string Items { get; set; } = ""; // format: "Item1,2;Item2,1;Item3,4"
     }
 }

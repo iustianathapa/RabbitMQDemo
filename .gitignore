@@ -12,6 +12,11 @@
 *.user
 *.userosscache
 *.sln.docstates
+RabbitMqPrinterApp/
+WebApplication1/
+kotprinterbot/
+.idea/
+*.DS_Store
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

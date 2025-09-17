@@ -1,34 +1,25 @@
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using RabbitMQDemo.Shared;
-using System;
-using System.Threading.Tasks;
+using RabbitMQDemo.Client;
 
-// Build configuration
-var configuration = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json")
+using var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((context, services) =>
+    {
+        var config = context.Configuration;
+
+        string rabbitHost = config["RabbitMQ:Host"] ?? "localhost";
+        string rabbitUser = config["RabbitMQ:User"] ?? "guest";
+        string rabbitPass = config["RabbitMQ:Password"] ?? "guest";
+
+        Console.Write("Enter Client ID: ");
+        string clientId = Console.ReadLine()?.Trim() ?? "client1";
+
+        var rabbitService = new RabbitMQService(rabbitHost, rabbitUser, rabbitPass);
+        services.AddSingleton(rabbitService);
+
+        services.AddHostedService(sp => new ClientWorker(rabbitService, clientId));
+    })
     .Build();
 
-// Get RabbitMQ settings
-var rabbitHost = configuration["RabbitMQ:Host"];
-var rabbitUser = configuration["RabbitMQ:User"];
-var rabbitPass = configuration["RabbitMQ:Password"];
-
-// Get client ID from user input
-Console.Write("Enter Client ID (same as publisher will use, e.g., client1): ");
-string clientId = Console.ReadLine()?.Trim() ?? "client1";
-
-using var rabbit = new RabbitMQService(rabbitHost, rabbitUser, rabbitPass);
-
-Console.WriteLine($"Client {clientId} started. Waiting for messages...");
-Console.WriteLine($"Publisher will send messages to queue: client.{clientId}");
-
-// Start consuming messages for this client
-rabbit.Consume($"client.{clientId}", async (message) =>
-{
-    Console.WriteLine($"Received: {message}");
-    await Task.CompletedTask;
-});
-
-Console.WriteLine("Press [enter] to exit.");
-Console.ReadLine();
+await host.RunAsync();
