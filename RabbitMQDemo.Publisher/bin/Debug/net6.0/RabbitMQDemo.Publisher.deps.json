@@ -70,7 +70,10 @@
           "RabbitMQ.Client": "6.4.0"
         },
         "runtime": {
-          "RabbitMQDemo.Contracts.dll": {}
+          "RabbitMQDemo.Contracts.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RabbitMQDemo.Shared/1.0.0": {
@@ -80,7 +83,10 @@
           "RabbitMQ.Client": "6.4.0"
         },
         "runtime": {
-          "RabbitMQDemo.Shared.dll": {}
+          "RabbitMQDemo.Shared.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Hosting;
 using RabbitMQDemo.Shared;
-using RabbitMQDemo.Contracts;
 using RabbitMQDemo.Client.Models;
 using RabbitMQDemo.Client.Services;
 using System;
@@ -26,7 +25,7 @@ namespace RabbitMQDemo.Client
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            string queueName = $"client.{_clientId}";
+            string queueName = $"{_clientId}";
 
             Console.WriteLine($"[{_clientId}] Connected to queue: {queueName}");
             Console.WriteLine($"[{_clientId}] Waiting for messages...");
@@ -40,16 +39,21 @@ namespace RabbitMQDemo.Client
                     if (request != null)
                     {
                         Console.WriteLine($"[{_clientId}] Received Method: {request.Method}");
-                        foreach (var kvp in request.Payload)
-                        {
-                            Console.WriteLine($"[{_clientId}] {kvp.Key}: {kvp.Value}");
-                        }
-
+                        
                         if (request.Method.Equals("Print", StringComparison.OrdinalIgnoreCase))
                         {
                             PrintKOT(request.Payload);
                         }
-                    }
+						if (request?.Method == "Ping" && !string.IsNullOrEmpty(request.ReplyTo))
+						{
+							var response = new ClientPingResponse
+							{
+								CorrelationId = request.CorrelationId,
+								Status = "Ok"
+							};
+							_rabbit.Publish(request.ReplyTo ?? "", response);
+						}
+					}
 
                     await Task.CompletedTask;
                 }
@@ -62,57 +66,23 @@ namespace RabbitMQDemo.Client
             return Task.CompletedTask;
         }
 
-        private void PrintKOT(Dictionary<string, string> payload)
+
+        private void PrintKOT(PrintVM payload)
         {
             try
             {
-                var printData = new PrintVM
-                {
-                    Master = new MasterVM
-                    {
-                        BillNo = payload.GetValueOrDefault("BillNo", ""),
-                        TableNo = payload.GetValueOrDefault("TableNo", ""),
-                        Waiter = payload.GetValueOrDefault("Waiter", ""),
-                        SerialNo = payload.GetValueOrDefault("BillNo", "")
-                    },
-                    Details = ParseItems(payload.GetValueOrDefault("Items", ""))
-                };
-
-                _printManager.PrintBill(printData);
-                Console.WriteLine($"[{_clientId}] KOT printed successfully.");
+               _printManager.PrintBill(payload);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"[{_clientId}] Failed to print KOT: {ex.Message}");
             }
         }
-
-        private List<DetailVM> ParseItems(string itemsString)
-        {
-            var details = new List<DetailVM>();
-            if (!string.IsNullOrEmpty(itemsString))
-            {
-                var items = itemsString.Split(';', StringSplitOptions.RemoveEmptyEntries);
-                foreach (var item in items)
-                {
-                    var parts = item.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                    if (parts.Length >= 2)
-                    {
-                        details.Add(new DetailVM
-                        {
-                            ItemName = parts[0].Trim(),
-                            Qty = parts[1].Trim()
-                        });
-                    }
-                }
-            }
-            return details;
-        }
-
         public override void Dispose()
         {
             _rabbit.Dispose();
             base.Dispose();
         }
     }
+	
 }

@@ -7,19 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Server", "Rabb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Client", "RabbitMQDemo.Client\RabbitMQDemo.Client.csproj", "{6E811783-B562-4678-A624-40C0F931CF3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Publisher", "RabbitMQDemo.Publisher\RabbitMQDemo.Publisher.csproj", "{DB8B9227-B37A-49B4-86EF-D55CAE4CE995}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Shared", "RabbitMQDemo.Shared\RabbitMQDemo.Shared.csproj", "{F2EA2B52-BC6E-1F14-E499-0A1D69359ADD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Contracts", "RabbitMQDemo.Contracts\RabbitMQDemo.Contracts.csproj", "{4A7EC4C9-91B2-488D-8AA9-4BDC769C56B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Contracts", "RabbitMQDemo.Contracts\RabbitMQDemo.Contracts.csproj", "{D5CEEB09-D687-51E6-61D9-2459AB808989}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Shared", "RabbitMQDemo.Shared\RabbitMQDemo.Shared.csproj", "{6823473A-EFDE-408F-BE9B-9AADD2D1440C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQDemo.Publisher", "RabbitMQDemo.Publisher\RabbitMQDemo.Publisher.csproj", "{64D342DE-7645-41BB-FC82-07DB4089317E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A203C616-6924-45A2-BF15-6DDC4D6AD7AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,17 +27,23 @@ Global
 		{6E811783-B562-4678-A624-40C0F931CF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E811783-B562-4678-A624-40C0F931CF3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E811783-B562-4678-A624-40C0F931CF3D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DB8B9227-B37A-49B4-86EF-D55CAE4CE995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB8B9227-B37A-49B4-86EF-D55CAE4CE995}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB8B9227-B37A-49B4-86EF-D55CAE4CE995}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB8B9227-B37A-49B4-86EF-D55CAE4CE995}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A7EC4C9-91B2-488D-8AA9-4BDC769C56B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A7EC4C9-91B2-488D-8AA9-4BDC769C56B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A7EC4C9-91B2-488D-8AA9-4BDC769C56B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A7EC4C9-91B2-488D-8AA9-4BDC769C56B7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6823473A-EFDE-408F-BE9B-9AADD2D1440C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6823473A-EFDE-408F-BE9B-9AADD2D1440C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6823473A-EFDE-408F-BE9B-9AADD2D1440C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6823473A-EFDE-408F-BE9B-9AADD2D1440C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2EA2B52-BC6E-1F14-E499-0A1D69359ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2EA2B52-BC6E-1F14-E499-0A1D69359ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2EA2B52-BC6E-1F14-E499-0A1D69359ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2EA2B52-BC6E-1F14-E499-0A1D69359ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5CEEB09-D687-51E6-61D9-2459AB808989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5CEEB09-D687-51E6-61D9-2459AB808989}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5CEEB09-D687-51E6-61D9-2459AB808989}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5CEEB09-D687-51E6-61D9-2459AB808989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D342DE-7645-41BB-FC82-07DB4089317E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D342DE-7645-41BB-FC82-07DB4089317E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D342DE-7645-41BB-FC82-07DB4089317E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D342DE-7645-41BB-FC82-07DB4089317E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA44AFD2-4986-4C7D-A75C-A5E9A2711766}
 	EndGlobalSection
 EndGlobal

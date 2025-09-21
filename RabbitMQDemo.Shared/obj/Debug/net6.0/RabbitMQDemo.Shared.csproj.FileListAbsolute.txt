@@ -22,3 +22,16 @@
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Shared/obj/Debug/net6.0/refint/RabbitMQDemo.Shared.dll
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Shared/obj/Debug/net6.0/RabbitMQDemo.Shared.pdb
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Shared/obj/Debug/net6.0/ref/RabbitMQDemo.Shared.dll
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\bin\Debug\net6.0\RabbitMQDemo.Shared.deps.json
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\bin\Debug\net6.0\RabbitMQDemo.Shared.dll
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\bin\Debug\net6.0\RabbitMQDemo.Shared.pdb
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\obj\Debug\net6.0\RabbitMQDemo.Shared.csproj.AssemblyReference.cache
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\obj\Debug\net6.0\RabbitMQDemo.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\obj\Debug\net6.0\RabbitMQDemo.Shared.AssemblyInfoInputs.cache
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\obj\Debug\net6.0\RabbitMQDemo.Shared.AssemblyInfo.cs
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\obj\Debug\net6.0\RabbitMQDemo.Shared.csproj.CoreCompileInputs.cache
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\obj\Debug\net6.0\RabbitMQDemo.Shared.sourcelink.json
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\obj\Debug\net6.0\RabbitMQDemo.Shared.dll
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\obj\Debug\net6.0\refint\RabbitMQDemo.Shared.dll
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\obj\Debug\net6.0\RabbitMQDemo.Shared.pdb
+C:\Users\sauga\Source\Repos\RabbitMQDemo\RabbitMQDemo.Shared\obj\Debug\net6.0\ref\RabbitMQDemo.Shared.dll

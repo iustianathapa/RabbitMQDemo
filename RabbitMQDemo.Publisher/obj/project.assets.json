@@ -329,35 +329,42 @@
     ]
   },
   "packageFolders": {
-    "/Users/iustianathapa/.nuget/packages/": {}
+    "C:\\Users\\sauga\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Publisher/RabbitMQDemo.Publisher.csproj",
+      "projectUniqueName": "C:\\Users\\sauga\\Source\\Repos\\RabbitMQDemo\\RabbitMQDemo.Publisher\\RabbitMQDemo.Publisher.csproj",
       "projectName": "RabbitMQDemo.Publisher",
-      "projectPath": "/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Publisher/RabbitMQDemo.Publisher.csproj",
-      "packagesPath": "/Users/iustianathapa/.nuget/packages/",
-      "outputPath": "/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Publisher/obj/",
+      "projectPath": "C:\\Users\\sauga\\Source\\Repos\\RabbitMQDemo\\RabbitMQDemo.Publisher\\RabbitMQDemo.Publisher.csproj",
+      "packagesPath": "C:\\Users\\sauga\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sauga\\source\\repos\\RabbitMQDemo\\RabbitMQDemo.Publisher\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/iustianathapa/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\sauga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/RabbitMQDemo.Contracts.csproj": {
-              "projectPath": "/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Contracts/RabbitMQDemo.Contracts.csproj"
+            "C:\\Users\\sauga\\Source\\Repos\\RabbitMQDemo\\RabbitMQDemo.Contracts\\RabbitMQDemo.Contracts.csproj": {
+              "projectPath": "C:\\Users\\sauga\\Source\\Repos\\RabbitMQDemo\\RabbitMQDemo.Contracts\\RabbitMQDemo.Contracts.csproj"
             },
-            "/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Shared/RabbitMQDemo.Shared.csproj": {
-              "projectPath": "/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Shared/RabbitMQDemo.Shared.csproj"
+            "C:\\Users\\sauga\\Source\\Repos\\RabbitMQDemo\\RabbitMQDemo.Shared\\RabbitMQDemo.Shared.csproj": {
+              "projectPath": "C:\\Users\\sauga\\Source\\Repos\\RabbitMQDemo\\RabbitMQDemo.Shared\\RabbitMQDemo.Shared.csproj"
             }
           }
         }
@@ -366,7 +373,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net6.0": {
@@ -393,7 +406,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.428/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

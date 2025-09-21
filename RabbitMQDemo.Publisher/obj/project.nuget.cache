@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "mN/4HPlL7EQJuxjEnEs0eLcqqKl0QgLPQe1coyjxhpS1yO7kHlumVkkIGkpE/l3wttH/JVdZpnhREDtqusHhcA==",
+  "dgSpecHash": "JRhNQy7lO68=",
   "success": true,
-  "projectFilePath": "/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Publisher/RabbitMQDemo.Publisher.csproj",
+  "projectFilePath": "C:\\Users\\sauga\\Source\\Repos\\RabbitMQDemo\\RabbitMQDemo.Publisher\\RabbitMQDemo.Publisher.csproj",
   "expectedPackageFiles": [
-    "/Users/iustianathapa/.nuget/packages/microsoft.extensions.configuration/6.0.2/microsoft.extensions.configuration.6.0.2.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/rabbitmq.client/6.4.0/rabbitmq.client.6.4.0.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "/Users/iustianathapa/.nuget/packages/system.threading.channels/4.7.1/system.threading.channels.4.7.1.nupkg.sha512"
+    "C:\\Users\\sauga\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.2\\microsoft.extensions.configuration.6.0.2.nupkg.sha512",
+    "C:\\Users\\sauga\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\sauga\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\sauga\\.nuget\\packages\\rabbitmq.client\\6.4.0\\rabbitmq.client.6.4.0.nupkg.sha512",
+    "C:\\Users\\sauga\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\sauga\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\sauga\\.nuget\\packages\\system.threading.channels\\4.7.1\\system.threading.channels.4.7.1.nupkg.sha512"
   ],
   "logs": []
 }

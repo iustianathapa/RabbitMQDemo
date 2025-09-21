@@ -1,13 +1,7 @@
 using System.Collections.Generic;
 
-namespace RabbitMQDemo.Client.Models
+namespace RabbitMQDemo.Contracts
 {
-public class KotBotPayload
-	{
-		public string  ClientId { get; set; }
-		public string  ApiToken { get; set; }
-		public PrintVM payload { get; set; }
-	}
 	public class PrintVM
 	{
 		public bool IsCancellationBill { get; set; }

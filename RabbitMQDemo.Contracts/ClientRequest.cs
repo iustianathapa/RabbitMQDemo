@@ -4,7 +4,7 @@ namespace RabbitMQDemo.Contracts
     {
         public string? ClientId { get; set; } // optional
         public string Method { get; set; } = "Print"; // e.g. "KOT", "Ping"
-        public Dictionary<string, string> Payload { get; set; } = new();
+        public PrintVM Payload { get; set; } = new();
 
         // 🔑 New Fields
         public string? Token { get; set; }   // HMS token for auth

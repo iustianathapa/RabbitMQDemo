@@ -4,15 +4,11 @@ using System.Text.Json;
 using System;
 
 // 1. Set RabbitMQ host
-string rabbitHost = "10.123.123.31"; // your server LAN IP or localhost if same PC
+string rabbitHost = "localhost"; // your server LAN IP or localhost if same PC
 
 using var rabbit = new RabbitMQService(rabbitHost, "guest", "guest");
 
 Console.WriteLine("Publisher started.");
-
-// 1️⃣ Generate a unique client ID for this PC
-string localClientId = $"client.{Environment.MachineName}_{Guid.NewGuid().ToString().Substring(0, 5)}";
-Console.WriteLine($"This PC's unique Client ID: {localClientId}");
 
 // Loop to send messages
 while (true)
@@ -28,19 +24,42 @@ while (true)
     Console.Write("Enter Message: ");
     string messageText = Console.ReadLine();
 
-    // Prepare request
-    var request = new ClientRequest
-    {
-        ClientId = localClientId, // sender's unique ID
-        Method = "Print",
-        Payload = new System.Collections.Generic.Dictionary<string, string>
-        {
-            { "Message", messageText }
-        }
-    };
+	// Prepare request
+	// Prepare request — create a real PrintVM instance
+	var request = new ClientRequest
+	{
+		ClientId = targetClientId, // sender's unique ID
+		Method = "Print",
+		Payload = new PrintVM
+		{
+			IsCancellationBill = false,
+			Master = new PrintMasteVM
+			{
+				BillNo = "BILL-0001",
+				Date = DateTime.Now.ToString("yyyy-MM-dd"),
+				TableNo = "T1",
+				Waiter = Environment.UserName,
+				Time = DateTime.Now.ToString("HH:mm"),
+				Type = "KOT",
+				SerialNo = Guid.NewGuid().ToString(),
+				PrinterName = "DefaultPrinter",
+				PrintedBy = targetClientId,
+				NoOfKotBotToBePrinted = 1
+			},
+			Details = new List<PrintDetailVM>
+			{
+				new PrintDetailVM
+				{
+					ItemName = messageText, // place your message here
+                    Quantity = 1,
+					Remarks = string.Empty
+				}
+			}
+		}
+	};
 
-    // Ensure queue exists & publish
-    string queueName = $"client.{targetClientId}";
+	// Ensure queue exists & publish
+	string queueName = $"{targetClientId}";
     rabbit.QueueDeclareAndBind(queueName);
     rabbit.Publish(queueName, request);
 
