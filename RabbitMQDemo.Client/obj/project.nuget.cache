@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "r/rkwLajO3XRR99JV//mUAgE7e4ZnuRE/xaU8m6ATrznOJFfIfW1d3mopviXCx8rF9+oBn8XoCGxgnIaTupctg==",
+  "dgSpecHash": "XTP06SeDJg6ifu6pBl9FxRy9RyUajFITCApsm8fuYSrR0Ek9yl/BgMdePp6UhbK72fTyL18dd1hfw4KGSWRtiw==",
   "success": true,
   "projectFilePath": "/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/RabbitMQDemo.Client.csproj",
   "expectedPackageFiles": [
@@ -29,9 +29,13 @@
     "/Users/iustianathapa/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/microsoft.extensions.options.configurationextensions/6.0.0/microsoft.extensions.options.configurationextensions.6.0.0.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/rabbitmq.client/6.4.0/rabbitmq.client.6.4.0.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/system.codedom/7.0.0/system.codedom.7.0.0.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/system.diagnostics.eventlog/6.0.0/system.diagnostics.eventlog.6.0.0.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/system.drawing.common/7.0.0/system.drawing.common.7.0.0.nupkg.sha512",
+    "/Users/iustianathapa/.nuget/packages/system.management/7.0.0/system.management.7.0.0.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/iustianathapa/.nuget/packages/system.text.encodings.web/6.0.0/system.text.encodings.web.6.0.0.nupkg.sha512",

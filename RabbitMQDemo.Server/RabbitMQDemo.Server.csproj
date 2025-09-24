@@ -9,11 +9,21 @@
   <ItemGroup>
     <PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+    <PackageReference Include="System.Management" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RabbitMQDemo.Client\RabbitMQDemo.Client.csproj" />
     <ProjectReference Include="..\RabbitMQDemo.Contracts\RabbitMQDemo.Contracts.csproj" />
     <ProjectReference Include="..\RabbitMQDemo.Shared\RabbitMQDemo.Shared.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+
 
 </Project>

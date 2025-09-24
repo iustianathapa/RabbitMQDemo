@@ -79,10 +79,17 @@
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/Microsoft.Extensions.Options.dll
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/Microsoft.Win32.SystemEvents.dll
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/RabbitMQ.Client.dll
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/System.CodeDom.dll
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/System.Diagnostics.EventLog.dll
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/System.Drawing.Common.dll
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/System.Management.dll
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Diagnostics.EventLog.Messages.dll
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Diagnostics.EventLog.dll
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
+/Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Management.dll
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/RabbitMQDemo.Contracts.dll
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/RabbitMQDemo.Shared.dll
 /Users/iustianathapa/RabbitMQDemo/RabbitMQDemo.Client/bin/Debug/net6.0/RabbitMQDemo.Contracts.pdb

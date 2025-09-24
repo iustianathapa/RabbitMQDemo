@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using RabbitMQDemo.Client.Models;
 using RabbitMQDemo.Shared;
 using RabbitMQDemo.Contracts;
-using System.Collections.Generic;
 
 namespace RabbitMQDemo.Server.Controllers
 {
@@ -10,56 +11,53 @@ namespace RabbitMQDemo.Server.Controllers
     public class MessagingController : ControllerBase
     {
         private readonly RabbitMQService _rabbit;
+        private readonly IConfiguration _config;
 
-        public MessagingController(RabbitMQService rabbit)
+        public MessagingController(RabbitMQService rabbit, IConfiguration config)
         {
             _rabbit = rabbit;
+            _config = config;
         }
 
-        /// <summary>
-        /// Send KOT or other commands to a specific client
-        /// </summary>
-        [HttpPost("SendKOT")]
-        public IActionResult SendKOT([FromBody] KOTRequest request)
+        [HttpPost("Send")]
+        public IActionResult SendMessage([FromBody] KotBotPayload request)
         {
-            if (string.IsNullOrEmpty(request.ClientId))
-                return BadRequest("ClientId is required");
+            if (request == null || string.IsNullOrEmpty(request.ClientId))
+                return BadRequest("ClientId is required.");
+
+            // ✅ Token validation
+            string serverToken = _config["Server:Token"] ?? string.Empty;
+            if (request.ApiToken != serverToken)
+                return Unauthorized(new { Message = "Invalid token" });
 
             string queueName = $"client.{request.ClientId}";
 
             _rabbit.QueueDeclareAndBind(queueName);
+            _rabbit.Publish(queueName, request);
 
-            // Build payload as per ClientRequest
-            var payload = new Dictionary<string, string>
-            {
-                { "BillNo", request.BillNo },
-                { "TableNo", request.TableNo },
-                { "Waiter", request.Waiter },
-                { "Items", request.Items } // format: "Item1,2;Item2,1;Item3,4"
-            };
-
-            var clientRequest = new ClientRequest
-            {
-                ClientId = request.ClientId,
-                Method = "Print",
-                Payload = payload
-            };
-
-            _rabbit.Publish(queueName, clientRequest);
-
-            return Ok(new { Message = "KOT sent to client", Client = request.ClientId });
+            return Ok(new { Message = "KOT sent successfully" });
         }
-    }
 
-    /// <summary>
-    /// DTO for sending KOT from HMS
-    /// </summary>
-    public class KOTRequest
-    {
-        public string ClientId { get; set; } = "";
-        public string BillNo { get; set; } = "";
-        public string TableNo { get; set; } = "";
-        public string Waiter { get; set; } = "";
-        public string Items { get; set; } = ""; // format: "Item1,2;Item2,1;Item3,4"
+        // 🔹 New Endpoint for PING
+        [HttpPost("Ping")]
+        public IActionResult Ping([FromBody] ClientRequest request)
+        {
+            if (request == null || string.IsNullOrEmpty(request.ClientId))
+                return BadRequest("ClientId is required.");
+
+            // ✅ Token validation
+            string serverToken = _config["Server:Token"] ?? string.Empty;
+            if (request.Token != serverToken)
+                return Unauthorized(new { Message = "Invalid token" });
+
+            request.IsPing = true; // force it as ping
+            request.Method = "Ping";
+
+            string queueName = $"client.{request.ClientId}";
+            _rabbit.QueueDeclareAndBind(queueName);
+            _rabbit.Publish(queueName, request);
+
+            return Ok(new { Message = "Ping request sent" });
+        }
     }
 }

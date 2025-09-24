@@ -1,11 +1,11 @@
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 using RabbitMQDemo.Shared;
 using RabbitMQDemo.Contracts;
 using RabbitMQDemo.Client.Models;
 using RabbitMQDemo.Client.Services;
-using System;
-using System.Collections.Generic;
 using System.Text.Json;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,12 +15,14 @@ namespace RabbitMQDemo.Client
     {
         private readonly RabbitMQService _rabbit;
         private readonly string _clientId;
+        private readonly string _expectedToken;
         private readonly PrintManager _printManager;
 
-        public ClientWorker(RabbitMQService rabbit, string clientId, string printerName = "DefaultPrinter")
+        public ClientWorker(RabbitMQService rabbit, IConfiguration config, string printerName = "DefaultPrinter")
         {
             _rabbit = rabbit;
-            _clientId = clientId;
+            _clientId = config["Client:ClientId"] ?? "unknown";
+            _expectedToken = config["Client:Token"] ?? "";
             _printManager = new PrintManager(printerName);
         }
 
@@ -35,84 +37,56 @@ namespace RabbitMQDemo.Client
             {
                 try
                 {
+                    // First try to parse as generic ClientRequest
                     var request = JsonSerializer.Deserialize<ClientRequest>(message);
 
-                    if (request != null)
+                    if (request == null)
                     {
-                        Console.WriteLine($"[{_clientId}] Received Method: {request.Method}");
-                        foreach (var kvp in request.Payload)
-                        {
-                            Console.WriteLine($"[{_clientId}] {kvp.Key}: {kvp.Value}");
-                        }
-
-                        if (request.Method.Equals("Print", StringComparison.OrdinalIgnoreCase))
-                        {
-                            PrintKOT(request.Payload);
-                        }
+                        Console.WriteLine($"[{_clientId}] Invalid message format.");
+                        return;
                     }
 
-                    await Task.CompletedTask;
+                    // Token validation
+                    if (request.Token != _expectedToken)
+                    {
+                        Console.WriteLine($"[{_clientId}] Invalid token. Ignoring message.");
+                        return;
+                    }
+
+                    // ✅ Handle Ping
+                    if (request.IsPing)
+                    {
+                        Console.WriteLine($"[{_clientId}] 🔔 Ping received from server.");
+                        // Optionally reply with Pong via RabbitMQ here
+                        return;
+                    }
+
+                    // ✅ Handle normal KOT payload
+                    if (request.Method == "Print" || request.Method == "KOT")
+                    {
+                        var kotPayload = JsonSerializer.Deserialize<KotBotPayload>(message);
+
+                        if (kotPayload?.payload?.Master == null)
+                        {
+                            Console.WriteLine($"[{_clientId}] Missing KOT payload data.");
+                            return;
+                        }
+
+                        Console.WriteLine($"[{_clientId}] Processing KOT for bill: {kotPayload.payload.Master.BillNo}");
+
+                        var result = _printManager.PrintBill(kotPayload.payload);
+                        Console.WriteLine($"[{_clientId}] Print result: {result.Status} - {result.Message}");
+                    }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"[{_clientId}] Error processing message: {ex.Message}");
                 }
+
+                await Task.CompletedTask;
             });
 
             return Task.CompletedTask;
-        }
-
-        private void PrintKOT(Dictionary<string, string> payload)
-        {
-            try
-            {
-                var printData = new PrintVM
-                {
-                    Master = new MasterVM
-                    {
-                        BillNo = payload.GetValueOrDefault("BillNo", ""),
-                        TableNo = payload.GetValueOrDefault("TableNo", ""),
-                        Waiter = payload.GetValueOrDefault("Waiter", ""),
-                        SerialNo = payload.GetValueOrDefault("BillNo", "")
-                    },
-                    Details = ParseItems(payload.GetValueOrDefault("Items", ""))
-                };
-
-                _printManager.PrintBill(printData);
-                Console.WriteLine($"[{_clientId}] KOT printed successfully.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[{_clientId}] Failed to print KOT: {ex.Message}");
-            }
-        }
-
-        private List<DetailVM> ParseItems(string itemsString)
-        {
-            var details = new List<DetailVM>();
-            if (!string.IsNullOrEmpty(itemsString))
-            {
-                var items = itemsString.Split(';', StringSplitOptions.RemoveEmptyEntries);
-                foreach (var item in items)
-                {
-                    var parts = item.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                    if (parts.Length >= 2)
-                    {
-                        details.Add(new DetailVM
-                        {
-                            ItemName = parts[0].Trim(),
-                            Qty = parts[1].Trim()
-                        });
-                    }
-                }
-            }
-            return details;
-        }
-
-        public override void Dispose()
-        {
-            _rabbit.Dispose();
-            base.Dispose();
         }
     }
 }

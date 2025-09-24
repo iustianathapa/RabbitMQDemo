@@ -2,47 +2,65 @@
 using RabbitMQDemo.Contracts;
 using System.Text.Json;
 using System;
+using System.Collections.Generic;
 
 // 1. Set RabbitMQ host
-string rabbitHost = "10.123.123.31"; // your server LAN IP or localhost if same PC
+string rabbitHost = "10.123.123.31"; // replace with your server IP
+string rabbitUser = "guest";
+string rabbitPass = "guest";
 
-using var rabbit = new RabbitMQService(rabbitHost, "guest", "guest");
+// 2. Set server token (same as in appsettings.json of server)
+string serverToken = "my_secure_token";
+
+using var rabbit = new RabbitMQService(rabbitHost, rabbitUser, rabbitPass);
 
 Console.WriteLine("Publisher started.");
 
-// 1️⃣ Generate a unique client ID for this PC
+// 3. Generate a unique client ID for this PC
 string localClientId = $"client.{Environment.MachineName}_{Guid.NewGuid().ToString().Substring(0, 5)}";
 Console.WriteLine($"This PC's unique Client ID: {localClientId}");
 
-// Loop to send messages
 while (true)
 {
-    // 2️⃣ Optional: ask for target client ID or default to broadcast
-    Console.Write("Enter Target Client ID (or leave empty for broadcast): ");
+    Console.Write("Enter Target Client ID (leave empty for broadcast): ");
     string targetClientId = Console.ReadLine();
     if (string.IsNullOrWhiteSpace(targetClientId))
     {
-        targetClientId = "all"; // or some default queue
+        targetClientId = "all"; // default queue for broadcast
     }
 
-    Console.Write("Enter Message: ");
-    string messageText = Console.ReadLine();
+    // Ask for KOT details
+    Console.Write("Bill No: ");
+    string billNo = Console.ReadLine() ?? "";
 
-    // Prepare request
+    Console.Write("Table No: ");
+    string tableNo = Console.ReadLine() ?? "";
+
+    Console.Write("Waiter Name: ");
+    string waiter = Console.ReadLine() ?? "";
+
+    Console.Write("Items (format: Item1,Qty1;Item2,Qty2): ");
+    string items = Console.ReadLine() ?? "";
+
+    // Prepare ClientRequest
     var request = new ClientRequest
     {
-        ClientId = localClientId, // sender's unique ID
-        Method = "Print",
-        Payload = new System.Collections.Generic.Dictionary<string, string>
+        ClientId = localClientId,
+        Method = "Print",      // for KOT printing
+        Token = serverToken,   // token for client validation
+        IsPing = false,
+        Payload = new Dictionary<string, string>
         {
-            { "Message", messageText }
+            { "BillNo", billNo },
+            { "TableNo", tableNo },
+            { "Waiter", waiter },
+            { "Items", items }
         }
     };
 
-    // Ensure queue exists & publish
     string queueName = $"client.{targetClientId}";
     rabbit.QueueDeclareAndBind(queueName);
     rabbit.Publish(queueName, request);
 
-    Console.WriteLine($"Message sent to {targetClientId}.\n");
+    Console.WriteLine($"✅ KOT sent to {targetClientId} with token.\n");
 }
