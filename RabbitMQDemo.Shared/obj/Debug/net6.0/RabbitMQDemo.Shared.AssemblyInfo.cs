@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RabbitMQDemo.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e447bb54431798f97b51fff4abb457c8ca4f2cb2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4f134bf38f8357ec608cc37a955db7a5a37d8e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("RabbitMQDemo.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RabbitMQDemo.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

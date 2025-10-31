@@ -10,11 +10,13 @@ namespace RabbitMQDemo.Server.Controllers
     public class MessagingController : ControllerBase
     {
         private readonly RabbitMQService _rabbit;
+        private readonly IConfiguration _config;
 
-        public MessagingController(RabbitMQService rabbit)
+		public MessagingController(RabbitMQService rabbit, IConfiguration config)
         {
             _rabbit = rabbit;
-        }
+            _config = config;
+		}
 
         /// <summary>
         /// Send KOT or other commands to a specific client
@@ -22,7 +24,10 @@ namespace RabbitMQDemo.Server.Controllers
         [HttpPost("SendKOT")]
         public IActionResult SendKOT([FromBody] KotBotPayload request)
         {
-            if (string.IsNullOrEmpty(request.ClientId))
+            var apiToken = _config.GetValue<string>("ApiToken");
+			if (request.ApiToken != apiToken)
+				return Unauthorized("Invalid");
+			if (string.IsNullOrEmpty(request.ClientId))
                 return BadRequest("ClientId is required");
 
             string queueName = $"{request.ClientId}";

@@ -16,11 +16,11 @@ namespace RabbitMQDemo.Client
         private readonly string _clientId;
         private readonly PrintManager _printManager;
 
-        public ClientWorker(RabbitMQService rabbit, string clientId, string printerName = "DefaultPrinter")
+        public ClientWorker(RabbitMQService rabbit, string clientId)
         {
             _rabbit = rabbit;
             _clientId = clientId;
-            _printManager = new PrintManager(printerName);
+            _printManager = new PrintManager();
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)

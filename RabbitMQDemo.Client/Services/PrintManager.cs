@@ -18,26 +18,23 @@ namespace RabbitMQDemo.Client.Services
 		private const int MaxPrintedItems = 20;
 		private static readonly Dictionary<string, DateTime> _printedDataCache = new();
 
-		public PrintManager(string printerName)
-		{
-			this.printerName = printerName;
-		}
+		
 
 		public ServiceResult<bool> PrintBill(PrintVM printData)
 		{
-			Console.WriteLine($"{DateTime.Now} Print Service called. Printer: {printerName}. Serial No: {printData.Master.SerialNo}");
+			Console.WriteLine($"{DateTime.Now} Print Service called. Printer: {printData.Master.PrinterName}. Serial No: {printData.Master.SerialNo}");
 
 			//// Optional: check printer exists
-			//if (!IsPrinterReady(printerName))
-			//{
-			//	Console.WriteLine($"{DateTime.Now} Printer: {printerName} not found");
-			//	return new ServiceResult<bool>
-			//	{
-			//		Data = false,
-			//		Status = ResultStatus.processError,
-			//		Message = $"Printer '{printerName}' not found."
-			//	};
-			//}
+			if (!IsPrinterReady(printData.Master.PrinterName))
+			{
+				Console.WriteLine($"{DateTime.Now} Printer: {printData.Master.PrinterName} not found");
+				return new ServiceResult<bool>
+				{
+					Data = false,
+					Status = ResultStatus.processError,
+					Message = $"Printer '{printData.Master.PrinterName}' not found."
+				};
+			}
 
 			// Prepare bill content
 			StringBuilder contentBuilder = new StringBuilder();
@@ -119,7 +116,7 @@ namespace RabbitMQDemo.Client.Services
 
 			// Create PrintDocument for Windows printing
 			PrintDocument printDocument = new PrintDocument();
-			printDocument.PrinterSettings.PrinterName = printerName;
+			printDocument.PrinterSettings.PrinterName = printData.Master.PrinterName;
 			printDocument.PrintPage += new PrintPageEventHandler(PrintPage);
 
 			try
@@ -141,7 +138,7 @@ namespace RabbitMQDemo.Client.Services
 				for (int i = 1; i <= printData.Master.NoOfKotBotToBePrinted; i++)
 				{
 					Console.WriteLine(billContent);  // optional preview
-					//printDocument.Print();           // actual print
+					printDocument.Print();           // actual print
 					Console.WriteLine($"{DateTime.Now} {printData.Master.SerialNo} printed");
 				}
 
